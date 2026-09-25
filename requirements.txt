@@ -4,6 +4,8 @@ langchain-core>=0.2.0
 langchain-community>=0.2.0
 langchain-openai>=0.1.0
 streamlit>=1.0.0
+langchain-groq
+langchain-huggingface
 
 # Tavily Search Tool
 Tavily-python>=0.3.0
@@ -14,3 +16,9 @@ readability-lxml
 trafilatura
 requests>=2.31.0
 lxml>=5.0.0
+
+# Environment variables
+python-env>=1.0.0
+
+# Logging / debugging (otional but recommended)
+rich>=13.7.0
