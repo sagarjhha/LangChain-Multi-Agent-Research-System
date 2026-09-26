@@ -12,10 +12,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Model Inititalization
+groq_key = os.getenv("GROQ_API_KEY")
 
-llm = ChatOllama(
-    model="llama3.2",
-    temperature=0.5,
+llm = ChatGroq(
+    model="openai/gpt-oss-20b",
+    api_key=groq_key,
+    temperature=0.2
 )
 
 # 1st Agent: Search Agent
