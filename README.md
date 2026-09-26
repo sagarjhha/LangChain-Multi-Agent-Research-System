@@ -27,17 +27,21 @@ Defines the logic and prompts for the specialized AI personas.
 The `pipeline.py` manages the state and the flow of data between agents:
 `Topic` $\rightarrow$ `Search Agent` $\rightarrow$ `Reader Agent` $\rightarrow$ `Writer Chain` $\rightarrow$ `Critic Chain` $\rightarrow$ `Final Output`.
 
-#### 4. `main.py` (Entry Point)
-The trigger for the system, allowing users to define a research topic and launch the full pipeline.
+#### 4. `app.py` (User Interface)
+A Streamlit-based web application that provides an intuitive dashboard for the research process. It handles:
+- **Input**: Topic entry and configuration (temperature/creativity).
+- **Real-time Monitoring**: Visual status updates as the pipeline progresses.
+- **Output Display**: Tabbed views for the Final Report, Source Links, Critic's Feedback, and Raw Intelligence.
 
 ### 🔄 Data Flow Diagram
 ```mermaid
 graph TD
-    Start(Topic) --> SA[Search Agent]
+    Start(Topic) --> UI[Streamlit App]
+    UI --> SA[Search Agent]
     SA --> |Broad Results| RA[Reader Agent]
     RA --> |Deep Scraped Content| WC[Writer Chain]
     WC --> |Draft Report| CC[Critic Chain]
-    CC --> |Score & Feedback| End(Final Research Package)
+    CC --> |Score & Feedback| UI
     
     subgraph Tools
         SA --> ToolS[Tavily Search]
@@ -92,9 +96,16 @@ graph TD
 
 ## 🏃 Usage
 
-To run the research pipeline from the command line:
+### Web Interface (Recommended)
+To launch the interactive research dashboard:
+```bash
+streamlit run app.py
+```
+
+### Command Line
+To run the research pipeline as a script:
 ```bash
 python main.py
 ```
 
-The system will execute the full pipeline: **Search $\rightarrow$ Read $\rightarrow$ Write $\rightarrow$ Critique** and print the final report and feedback to the console.
+The system will execute the full pipeline: **Search $\rightarrow$ Read $\rightarrow$ Write $\rightarrow$ Critique** and produce the final intelligence report.
